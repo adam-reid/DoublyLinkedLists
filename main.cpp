@@ -87,7 +87,7 @@ DoublyLinkedList::~DoublyLinkedList(){}
 void DoublyLinkedList::Add(const int &val, const int &loc)
 {
     Smart_Ptr node = make_shared<Node>(Node(val));
-    Smart_Ptr it = m_head;
+    Smart_Ptr it;
 
     if(m_size == 0)
     {
@@ -134,7 +134,31 @@ void DoublyLinkedList::Push(const int &val)
 */
 void DoublyLinkedList::Remove(const int &loc)
 {
+    Smart_Ptr it = m_head;
 
+    if(m_size == 0 || loc >= m_size)
+    {
+        cerr<<"Location requested: " << loc << ", max size: " << m_size << "\n";
+        cerr<<"No action performed.\n";
+    }
+
+    //If in the first half...
+    if(loc < m_size/2)
+    {
+        for(int i = 0; i < loc; i++)
+            it = it->next;
+    }
+    //Else, the second half..
+    else
+    {
+        for(int i = m_size; i > loc; i--)
+            it = it->prev;
+    }
+
+    (it->prev)->next = it->next;
+    (it->next)->prev = it->prev;
+
+    m_size--;
 }
 
 /** \brief Pop off the last element in the list
@@ -201,7 +225,6 @@ void DoublyLinkedList::BubbleSort()
 *
 * Main creates a doubly-linked list and then allows
 * values to be added in and displayed.
-* \todo Test Remove()
 * \todo Implement InsertionSort()
 * \todo Confirm InsertionSort()
 * \todo Implement BubbleSort()
@@ -222,6 +245,11 @@ int main()
 
         mylist.Display();
         mylist.RDisplay();
+
+        mylist.Pop();
+        mylist.Pop();
+
+        mylist.Display();
     }
     catch(...)
     {
