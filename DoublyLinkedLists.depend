@@ -1,0 +1,8 @@
+# depslib dependency file v1.0
+1474436080 source:c:\users\adame\documents\codeblocksprojects\newtest\doublylinkedlists\main.cpp
+	<iostream>
+	<random>
+	<ctime>
+	<memory>
+	<fstream>
+

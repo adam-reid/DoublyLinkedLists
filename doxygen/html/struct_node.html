@@ -97,11 +97,13 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html#ad7a34779cad45d997bfd6d3d8043c75f">Node</a> ()</td></tr>
 <tr class="memdesc:ad7a34779cad45d997bfd6d3d8043c75f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor Receives no arguments - initializes prev and next to nullptr. <br /></td></tr>
 <tr class="separator:ad7a34779cad45d997bfd6d3d8043c75f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a634e3198751891a14a5868980489d0e8"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html#a634e3198751891a14a5868980489d0e8">Node</a> (const int &amp;value)</td></tr>
+<tr class="memdesc:a634e3198751891a14a5868980489d0e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor w/ args Receives value as an argument - initializes prev and next to nullptr.  <a href="#a634e3198751891a14a5868980489d0e8">More...</a><br /></td></tr>
+<tr class="separator:a634e3198751891a14a5868980489d0e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
-<tr class="memitem:ab1d228a881cf7465b2d42ea135781427"><td class="memItemLeft" align="right" valign="top"><a id="ab1d228a881cf7465b2d42ea135781427"></a>
-int&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
+<tr class="memitem:ab1d228a881cf7465b2d42ea135781427"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html#ab1d228a881cf7465b2d42ea135781427">val</a></td></tr>
 <tr class="separator:ab1d228a881cf7465b2d42ea135781427"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac049e4d4494ff85bfec4e20e95903375"><td class="memItemLeft" align="right" valign="top">shared_ptr&lt; <a class="el" href="struct_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="struct_node.html#ac049e4d4494ff85bfec4e20e95903375">prev</a></td></tr>
 <tr class="separator:ac049e4d4494ff85bfec4e20e95903375"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -110,7 +112,42 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>This is the node. This houses a doubly-linked list, previous and next nodes, and a value. </p>
-</div><h2 class="groupheader">Member Data Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a634e3198751891a14a5868980489d0e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a634e3198751891a14a5868980489d0e8">&sect;&nbsp;</a></span>Node()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">Node::Node </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>value</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Constructor w/ args Receives value as an argument - initializes prev and next to nullptr. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">value</td><td>Value to be assigned. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
 <a id="adf65c2466b9d2031b950e68b9152d1d6"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#adf65c2466b9d2031b950e68b9152d1d6">&sect;&nbsp;</a></span>next</h2>
 
@@ -122,7 +159,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This is a pointer to the next node </p>
+<p>This is a pointer to the next node. </p>
 
 </div>
 </div>
@@ -137,7 +174,22 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>This is a pointer to the previous node </p>
+<p>This is a pointer to the previous node. </p>
+
+</div>
+</div>
+<a id="ab1d228a881cf7465b2d42ea135781427"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab1d228a881cf7465b2d42ea135781427">&sect;&nbsp;</a></span>val</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Node::val</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This is the value that the node holds. </p>
 
 </div>
 </div>
@@ -150,7 +202,7 @@ int&#160;</td><td class="memItemRight" valign="bottom"><b>val</b></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="struct_node.html">Node</a></li>
-    <li class="footer">Generated on Tue Sep 20 2016 22:48:45 for DoublyLinkedLists by
+    <li class="footer">Generated on Wed Sep 21 2016 00:36:07 for DoublyLinkedLists by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

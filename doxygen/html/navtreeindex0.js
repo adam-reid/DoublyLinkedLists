@@ -28,9 +28,10 @@ var NAVTREEINDEX0 =
 "main_8cpp.html#ae66f6b31b5ad750f1fe042a706a4e3d4":[3,0,0,3],
 "pages.html":[],
 "struct_node.html":[2,0,1],
-"struct_node.html#ab1d228a881cf7465b2d42ea135781427":[2,0,1,3],
-"struct_node.html#ac049e4d4494ff85bfec4e20e95903375":[2,0,1,2],
+"struct_node.html#a634e3198751891a14a5868980489d0e8":[2,0,1,1],
+"struct_node.html#ab1d228a881cf7465b2d42ea135781427":[2,0,1,4],
+"struct_node.html#ac049e4d4494ff85bfec4e20e95903375":[2,0,1,3],
 "struct_node.html#ad7a34779cad45d997bfd6d3d8043c75f":[2,0,1,0],
-"struct_node.html#adf65c2466b9d2031b950e68b9152d1d6":[2,0,1,1],
+"struct_node.html#adf65c2466b9d2031b950e68b9152d1d6":[2,0,1,2],
 "todo.html":[1]
 };
