@@ -48,6 +48,9 @@ public:
     DoublyLinkedList();
     ~DoublyLinkedList();
 
+    //Randomizers
+    void RandomizeData(const int&);
+
     //Inserters
     void Add(const int&, const int&);
     void Push(const int&);
@@ -76,6 +79,22 @@ DoublyLinkedList::DoublyLinkedList():m_head(nullptr),m_size(0){}
 /** \brief Deconstructor for DoublyLinkedList
 */
 DoublyLinkedList::~DoublyLinkedList(){}
+
+/** \brief Randomizes the data to be injected into the list.
+* Uses a mersenne twister object to generate 32-bit integer data.
+* RNG is seeded with system time null and returns the raw value.
+* At completion, the doubly-linked list object is populated.
+* \param size Number of elements to be randomly created.
+*/
+void DoublyLinkedList::RandomizeData(const int &size)
+{
+    mt19937 rng(time(0));
+
+    for(int i = 0; i < size; i++)
+    {
+        Push(rng());
+    }
+}
 
 /** \brief Adds the integer value to the node.
 * \param val Integer value to be inserted into the list.
@@ -113,7 +132,7 @@ void DoublyLinkedList::Add(const int &val, const int &loc)
         m_head->prev = node;
     }
 
-    cout<<node->val<<"\t"<<node->next<<'\t'<<node<<"\t"<<node->prev<<"\n";
+    cout<<"Adding "<<node->val<<" at "<<node<<"\n";
     m_size++;
 }
 
@@ -155,6 +174,8 @@ void DoublyLinkedList::Remove(const int &loc)
             it = it->prev;
     }
 
+    cout<<"Removing "<<it->val<<" at "<<it<<"\n";
+
     (it->prev)->next = it->next;
     (it->next)->prev = it->prev;
 
@@ -179,9 +200,16 @@ void DoublyLinkedList::Display() const
 {
     Smart_Ptr node = m_head;
 
+    cout<<"**Printing Forwards Data**\n";
+
     for(int pos = 0; pos < m_size; pos++, node = node->next)
     {
-        cout<<"Index: "<<pos<<", Value: "<<node->val<<"\t\t"<<node->next<<"\t"<<node<<'\t'<<node->prev<<"\n";
+        cout<<"Index: "<<pos
+            <<"\tValue: "<<node->val
+            <<"\tPrevious: "<<node->prev
+            <<"\tCurrent: "<<node
+            <<"\tNext: "<<node->next
+            <<"\n";
     }
 }
 
@@ -194,9 +222,16 @@ void DoublyLinkedList::RDisplay() const
 {
     Smart_Ptr node = m_head;
 
+    cout<<"**Printing Reverse Data**\n";
+
     for(int pos = m_size-1; pos >= 0; pos--, node = node->prev)
     {
-        cout<<"Index: "<<pos<<", Value: "<<node->val<<"\t\t"<<node->next<<"\t"<<node<<'\t'<<node->prev<<"\n";
+        cout<<"Index: "<<pos
+            <<"\tValue: "<<node->val
+            <<"\tPrevious: "<<node->prev
+            <<"\tCurrent: "<<node
+            <<"\tNext: "<<node->next
+            <<"\n";
     }
 }
 
@@ -240,8 +275,7 @@ int main()
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
-        for(int i = 0; i < 12; i++)
-            mylist.Push(i);
+        mylist.RandomizeData(100);
 
         mylist.Display();
         mylist.RDisplay();
