@@ -270,15 +270,13 @@ void DoublyLinkedList::MergeSort()
 */
 void DoublyLinkedList::BubbleSort()
 {
-/** \bug Currently bubble sort does not sort the last element properly. */
-
     Smart_Ptr it1, it2, itswap;
 
     for(it1 = m_head; it1->next != m_head; it1=it1->next)
     {
         itswap = it1;
 
-        for(it2 = it1->next; it2->next != m_head; it2=it2->next)
+        for(it2 = it1->next; it2 != m_head; it2=it2->next)
         {
             if(itswap->val > it2->val)
                 itswap = it2;
@@ -311,10 +309,10 @@ int main()
             while(mylist.GetSize() > 0)
                 mylist.Pop();
 
-            mylist.RandomizeData(100);
+            mylist.RandomizeData(20);
 
             mylist.Display();
-            mylist.RDisplay();
+            //mylist.RDisplay();
 
             switch(i)
             {

@@ -4,7 +4,6 @@ var NAVTREE =
     [ "Summary", "index.html", null ],
     [ "Test List", "test.html", null ],
     [ "Todo List", "todo.html", null ],
-    [ "Bug List", "bug.html", null ],
     [ "Classes", "annotated.html", [
       [ "Class List", "annotated.html", "annotated_dup" ],
       [ "Class Index", "classes.html", null ],
