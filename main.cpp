@@ -62,6 +62,7 @@ public:
     //Displayers
     void Display() const;
     void RDisplay() const;
+    int GetSize() const;
 
     //Sorters
     void InsertionSort();
@@ -235,6 +236,14 @@ void DoublyLinkedList::RDisplay() const
     }
 }
 
+/** \brief Getter method of the doubly-linked list
+* \return Size of the doubly linked list
+*/
+int DoublyLinkedList::GetSize() const
+{
+    return m_size;
+}
+
 /** \brief Sorts via insertion sort (log n)
 */
 void DoublyLinkedList::InsertionSort()
@@ -275,15 +284,30 @@ int main()
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
-        mylist.RandomizeData(100);
 
-        mylist.Display();
-        mylist.RDisplay();
+        for(int i = 0; i < 3; i++)
+        {
+            while(mylist.GetSize() > 0)
+                mylist.Pop();
 
-        mylist.Pop();
-        mylist.Pop();
+            mylist.RandomizeData(100);
 
-        mylist.Display();
+            mylist.Display();
+            mylist.RDisplay();
+
+            switch(i)
+            {
+                case 0: mylist.BubbleSort();    break;
+                case 1: mylist.MergeSort();     break;
+                case 2: mylist.InsertionSort(); break;
+                default: cout<<"No such case exists.\n";
+            };
+
+            mylist.Display();
+        }
+
+
+
     }
     catch(...)
     {

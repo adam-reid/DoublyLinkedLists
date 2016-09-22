@@ -100,6 +100,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#abe3231c8ee3dd956b5261c4148102967">~DoublyLinkedList</a> ()</td></tr>
 <tr class="memdesc:abe3231c8ee3dd956b5261c4148102967"><td class="mdescLeft">&#160;</td><td class="mdescRight">Deconstructor for <a class="el" href="class_doubly_linked_list.html" title="DoublyLinkedList class allows for a uh.. a doubly linked list. ">DoublyLinkedList</a>. <br /></td></tr>
 <tr class="separator:abe3231c8ee3dd956b5261c4148102967"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8c4ed1097cf53863e385e4b3e45acaba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#a8c4ed1097cf53863e385e4b3e45acaba">RandomizeData</a> (const int &amp;)</td></tr>
+<tr class="memdesc:a8c4ed1097cf53863e385e4b3e45acaba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Randomizes the data to be injected into the list. Uses a mersenne twister object to generate 32-bit integer data. RNG is seeded with system time null and returns the raw value. At completion, the doubly-linked list object is populated.  <a href="#a8c4ed1097cf53863e385e4b3e45acaba">More...</a><br /></td></tr>
+<tr class="separator:a8c4ed1097cf53863e385e4b3e45acaba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4208b351f7ee8c4d114f7e22748d0e36"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#a4208b351f7ee8c4d114f7e22748d0e36">Add</a> (const int &amp;, const int &amp;)</td></tr>
 <tr class="memdesc:a4208b351f7ee8c4d114f7e22748d0e36"><td class="mdescLeft">&#160;</td><td class="mdescRight">Adds the integer value to the node.  <a href="#a4208b351f7ee8c4d114f7e22748d0e36">More...</a><br /></td></tr>
 <tr class="separator:a4208b351f7ee8c4d114f7e22748d0e36"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -120,6 +123,9 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <tr class="memitem:a6d36821c52135757e1ec4b60430e4cde"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#a6d36821c52135757e1ec4b60430e4cde">RDisplay</a> () const</td></tr>
 <tr class="memdesc:a6d36821c52135757e1ec4b60430e4cde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Display list in reverse order.  <a href="#a6d36821c52135757e1ec4b60430e4cde">More...</a><br /></td></tr>
 <tr class="separator:a6d36821c52135757e1ec4b60430e4cde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abec12dcc52629cf4758d23d5149769fe"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#abec12dcc52629cf4758d23d5149769fe">GetSize</a> () const</td></tr>
+<tr class="memdesc:abec12dcc52629cf4758d23d5149769fe"><td class="mdescLeft">&#160;</td><td class="mdescRight">Getter method of the doubly-linked list.  <a href="#abec12dcc52629cf4758d23d5149769fe">More...</a><br /></td></tr>
+<tr class="separator:abec12dcc52629cf4758d23d5149769fe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae2f557c28f3b33e1bc99810456821d4f"><td class="memItemLeft" align="right" valign="top"><a id="ae2f557c28f3b33e1bc99810456821d4f"></a>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_doubly_linked_list.html#ae2f557c28f3b33e1bc99810456821d4f">InsertionSort</a> ()</td></tr>
 <tr class="memdesc:ae2f557c28f3b33e1bc99810456821d4f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sorts via insertion sort (log n) <br /></td></tr>
@@ -193,6 +199,26 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 
 </div>
 </div>
+<a id="abec12dcc52629cf4758d23d5149769fe"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abec12dcc52629cf4758d23d5149769fe">&sect;&nbsp;</a></span>GetSize()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int DoublyLinkedList::GetSize </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Getter method of the doubly-linked list. </p>
+<dl class="section return"><dt>Returns</dt><dd>Size of the doubly linked list </dd></dl>
+
+</div>
+</div>
 <a id="a4c1b6187f5c5040f55d3ac38a3a5f1dc"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a4c1b6187f5c5040f55d3ac38a3a5f1dc">&sect;&nbsp;</a></span>Push()</h2>
 
@@ -213,6 +239,32 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">val</td><td>Integer to be 'pushed' onto the list This function behaves similarly to a stack, in which value is inserted prior to the head. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a8c4ed1097cf53863e385e4b3e45acaba"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8c4ed1097cf53863e385e4b3e45acaba">&sect;&nbsp;</a></span>RandomizeData()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void DoublyLinkedList::RandomizeData </td>
+          <td>(</td>
+          <td class="paramtype">const int &amp;&#160;</td>
+          <td class="paramname"><em>size</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Randomizes the data to be injected into the list. Uses a mersenne twister object to generate 32-bit integer data. RNG is seeded with system time null and returns the raw value. At completion, the doubly-linked list object is populated. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">size</td><td>Number of elements to be randomly created. </td></tr>
   </table>
   </dd>
 </dl>
@@ -248,7 +300,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="clas
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="class_doubly_linked_list.html">DoublyLinkedList</a></li>
-    <li class="footer">Generated on Wed Sep 21 2016 00:36:07 for DoublyLinkedLists by
+    <li class="footer">Generated on Wed Sep 21 2016 22:59:22 for DoublyLinkedLists by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.12 </li>
   </ul>

@@ -1,5 +1,5 @@
 var searchData=
 [
-  ['rdisplay',['RDisplay',['../class_doubly_linked_list.html#a6d36821c52135757e1ec4b60430e4cde',1,'DoublyLinkedList']]],
-  ['remove',['Remove',['../class_doubly_linked_list.html#aa1f2941b6e781d8b19a0fe9e6917ce75',1,'DoublyLinkedList']]]
+  ['pop',['Pop',['../class_doubly_linked_list.html#af30d0a21291697bfdb28029472b08548',1,'DoublyLinkedList']]],
+  ['push',['Push',['../class_doubly_linked_list.html#a4c1b6187f5c5040f55d3ac38a3a5f1dc',1,'DoublyLinkedList']]]
 ];

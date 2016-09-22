@@ -1,5 +1,6 @@
 var searchData=
 [
-  ['summary',['Summary',['../index.html',1,'']]],
-  ['smart_5fptr',['Smart_Ptr',['../main_8cpp.html#aad44a80080b183e3e4ee97b2ab5acda2',1,'main.cpp']]]
+  ['randomizedata',['RandomizeData',['../class_doubly_linked_list.html#a8c4ed1097cf53863e385e4b3e45acaba',1,'DoublyLinkedList']]],
+  ['rdisplay',['RDisplay',['../class_doubly_linked_list.html#a6d36821c52135757e1ec4b60430e4cde',1,'DoublyLinkedList']]],
+  ['remove',['Remove',['../class_doubly_linked_list.html#aa1f2941b6e781d8b19a0fe9e6917ce75',1,'DoublyLinkedList']]]
 ];
