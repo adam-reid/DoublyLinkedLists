@@ -1,5 +1,4 @@
 var searchData=
 [
-  ['pop',['Pop',['../class_doubly_linked_list.html#af30d0a21291697bfdb28029472b08548',1,'DoublyLinkedList']]],
-  ['push',['Push',['../class_doubly_linked_list.html#a4c1b6187f5c5040f55d3ac38a3a5f1dc',1,'DoublyLinkedList']]]
+  ['node',['Node',['../struct_node.html#ad7a34779cad45d997bfd6d3d8043c75f',1,'Node::Node()'],['../struct_node.html#a634e3198751891a14a5868980489d0e8',1,'Node::Node(const int &amp;value)']]]
 ];
