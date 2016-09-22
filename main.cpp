@@ -3,7 +3,13 @@
 *
 * This is an implementation of a doubly-linked list that
 * also allows for 3 different types of sorting algorithms.
+* \<3 \<3
 */
+
+/** \author Adam Reid */
+/** \date 21 September 2016 */
+/** \version 1.0 */
+
 
 #include <iostream>
 #include <random>
@@ -38,7 +44,8 @@ struct Node{
     Node(const int &value):val(value),prev(this),next(this){};
 };
 
-typedef shared_ptr<Node> Smart_Ptr; /**< Allow for shared_ptr<Node> to be referenced easier */
+
+typedef shared_ptr<Node> Smart_Ptr; /**< \typedef Allow for shared_ptr<Node> to be referenced easier */
 
 /** \brief DoublyLinkedList class allows for a uh.. a doubly linked list.
 */
@@ -68,6 +75,7 @@ public:
     void InsertionSort();
     void MergeSort();
     void BubbleSort();
+
 private:
     Smart_Ptr m_head; /**< This is the head of the linked list. */
     int m_size;     /**< This is the size of the linked list. */
@@ -262,7 +270,22 @@ void DoublyLinkedList::MergeSort()
 */
 void DoublyLinkedList::BubbleSort()
 {
+/** \bug Currently bubble sort does not sort the last element properly. */
 
+    Smart_Ptr it1, it2, itswap;
+
+    for(it1 = m_head; it1->next != m_head; it1=it1->next)
+    {
+        itswap = it1;
+
+        for(it2 = it1->next; it2->next != m_head; it2=it2->next)
+        {
+            if(itswap->val > it2->val)
+                itswap = it2;
+        }
+
+        swap(it1->val, itswap->val);
+    }
 }
 
 /** \brief Main insertion point into the program
@@ -271,11 +294,9 @@ void DoublyLinkedList::BubbleSort()
 * values to be added in and displayed.
 * \todo Implement InsertionSort()
 * \todo Confirm InsertionSort()
-* \todo Implement BubbleSort()
 * \todo Confirm BubbleSort()
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
-* \todo Implement Randomizer(int length)
 * \todo Implement timer for sort functions.
 
 */
@@ -284,8 +305,8 @@ int main()
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
-
-        for(int i = 0; i < 3; i++)
+/** \test This for loop allows the 3 sorting algorithms to function */
+        for(int i = 0; i < 1; i++)
         {
             while(mylist.GetSize() > 0)
                 mylist.Pop();
