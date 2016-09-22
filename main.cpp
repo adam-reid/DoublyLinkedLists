@@ -79,12 +79,13 @@ public:
 private:
     Smart_Ptr m_head; /**< This is the head of the linked list. */
     int m_size;     /**< This is the size of the linked list. */
+    mt19937 m_rng;    /**< This is the mersenne twister object for randomness.*/
 };
 
 /** \brief Constructor for DoublyLinkedList
 ** Initializes the class members.
 */
-DoublyLinkedList::DoublyLinkedList():m_head(nullptr),m_size(0){}
+DoublyLinkedList::DoublyLinkedList():m_head(nullptr),m_size(0),m_rng(time(0)){}
 /** \brief Deconstructor for DoublyLinkedList
 */
 DoublyLinkedList::~DoublyLinkedList(){}
@@ -97,11 +98,9 @@ DoublyLinkedList::~DoublyLinkedList(){}
 */
 void DoublyLinkedList::RandomizeData(const int &size)
 {
-    mt19937 rng(time(0));
-
     for(int i = 0; i < size; i++)
     {
-        Push(rng());
+        Push(m_rng());
     }
 }
 
@@ -292,7 +291,6 @@ void DoublyLinkedList::BubbleSort()
 * values to be added in and displayed.
 * \todo Implement InsertionSort()
 * \todo Confirm InsertionSort()
-* \todo Confirm BubbleSort()
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
 * \todo Implement timer for sort functions.
@@ -304,7 +302,7 @@ int main()
 
     try{
 /** \test This for loop allows the 3 sorting algorithms to function */
-        for(int i = 0; i < 1; i++)
+        for(int i = 1; i < 2; i++)
         {
             while(mylist.GetSize() > 0)
                 mylist.Pop();
