@@ -62,6 +62,10 @@ public:
     void Add(const int&, const int&);
     void Push(const int&);
 
+    //Helpers
+    Smart_Ptr CloneList();
+    Smart_Ptr CloneListFromXtoY(const int&, const int&);
+
     //Removers
     void Remove(const int&);
     void Pop();
@@ -80,6 +84,9 @@ private:
     Smart_Ptr m_head; /**< This is the head of the linked list. */
     int m_size;     /**< This is the size of the linked list. */
     mt19937 m_rng;    /**< This is the mersenne twister object for randomness.*/
+
+    void MergeSort_Sort();
+    void MergeSort_Merge();
 };
 
 /** \brief Constructor for DoublyLinkedList
@@ -271,7 +278,7 @@ void DoublyLinkedList::InsertionSort()
     }
 }
 
-/** \brief Sorts via merge sort (some other notation)
+/** \brief Sorts via merge sort (n log n)
 */
 void DoublyLinkedList::MergeSort()
 {
@@ -305,16 +312,17 @@ void DoublyLinkedList::BubbleSort()
 
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
-* \todo Implement timer for sort functions.
 
 */
 int main()
 {
+    clock_t start, stop;
+
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
 /** \test This for loop allows the 3 sorting algorithms to function */
-        for(int i = 2; i < 3; i++)
+        for(int i = 1; i < 2; i++)
         {
             while(mylist.GetSize() > 0)
                 mylist.Pop();
@@ -325,19 +333,22 @@ int main()
             mylist.Display();
             //mylist.RDisplay();
 
+            start = clock();
+
             switch(i)
             {
                 case 0: mylist.BubbleSort();    break;
                 case 1: mylist.MergeSort();     break;
                 case 2: mylist.InsertionSort(); break;
-                default: cout<<"No such case exists.\n";
+                default: cout<<"No such case exists.\n"; ///< \todo Implement an assert here - this condition will never hit.
             };
 
+            stop = clock();
+
             mylist.Display();
+
+            cout<<"Sort ran for "<< (stop-start)/CLK_TCK <<" seconds.\n";
         }
-
-
-
     }
     catch(...)
     {
