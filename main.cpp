@@ -255,7 +255,20 @@ int DoublyLinkedList::GetSize() const
 */
 void DoublyLinkedList::InsertionSort()
 {
+    Smart_Ptr it1, it2, itswap;
 
+    for(it1 = m_head->next; it1 != m_head; it1=it1->next)
+    {
+        it2 = it1;
+        itswap = it2->prev;
+
+        while(itswap != m_head->prev && it2->val < itswap->val)
+        {
+            swap(it2->val,itswap->val);
+            it2=it2->prev;
+            itswap=itswap->prev;
+        }
+    }
 }
 
 /** \brief Sorts via merge sort (some other notation)
@@ -289,8 +302,7 @@ void DoublyLinkedList::BubbleSort()
 *
 * Main creates a doubly-linked list and then allows
 * values to be added in and displayed.
-* \todo Implement InsertionSort()
-* \todo Confirm InsertionSort()
+
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
 * \todo Implement timer for sort functions.
@@ -302,12 +314,13 @@ int main()
 
     try{
 /** \test This for loop allows the 3 sorting algorithms to function */
-        for(int i = 1; i < 2; i++)
+        for(int i = 2; i < 3; i++)
         {
             while(mylist.GetSize() > 0)
                 mylist.Pop();
 
             mylist.RandomizeData(20);
+
 
             mylist.Display();
             //mylist.RDisplay();
