@@ -4,6 +4,8 @@ var class_doubly_linked_list =
     [ "~DoublyLinkedList", "class_doubly_linked_list.html#abe3231c8ee3dd956b5261c4148102967", null ],
     [ "Add", "class_doubly_linked_list.html#a4208b351f7ee8c4d114f7e22748d0e36", null ],
     [ "BubbleSort", "class_doubly_linked_list.html#a9b121d5f68a4a37190783609191c67bd", null ],
+    [ "CloneList", "class_doubly_linked_list.html#ad875909c81b10e84a1527a574ad7f8a7", null ],
+    [ "CloneListFromXtoY", "class_doubly_linked_list.html#ad3677d8deba596893db067a326d45989", null ],
     [ "Display", "class_doubly_linked_list.html#a8fc204480b4dff9b4535766ecc0702a2", null ],
     [ "GetSize", "class_doubly_linked_list.html#abec12dcc52629cf4758d23d5149769fe", null ],
     [ "InsertionSort", "class_doubly_linked_list.html#ae2f557c28f3b33e1bc99810456821d4f", null ],
