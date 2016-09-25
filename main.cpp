@@ -62,6 +62,10 @@ public:
     void Add(const int&, const int&);
     void Push(const int&);
 
+    //Helpers
+    Smart_Ptr CloneList();
+    Smart_Ptr CloneListFromXtoY(const int&, const int&);
+
     //Removers
     void Remove(const int&);
     void Pop();
@@ -80,6 +84,9 @@ private:
     Smart_Ptr m_head; /**< This is the head of the linked list. */
     int m_size;     /**< This is the size of the linked list. */
     mt19937 m_rng;    /**< This is the mersenne twister object for randomness.*/
+
+    void MergeSort_Sort();
+    void MergeSort_Merge();
 };
 
 /** \brief Constructor for DoublyLinkedList
@@ -255,10 +262,23 @@ int DoublyLinkedList::GetSize() const
 */
 void DoublyLinkedList::InsertionSort()
 {
+    Smart_Ptr it1, it2, itswap;
 
+    for(it1 = m_head->next; it1 != m_head; it1=it1->next)
+    {
+        it2 = it1;
+        itswap = it2->prev;
+
+        while(itswap != m_head->prev && it2->val < itswap->val)
+        {
+            swap(it2->val,itswap->val);
+            it2=it2->prev;
+            itswap=itswap->prev;
+        }
+    }
 }
 
-/** \brief Sorts via merge sort (some other notation)
+/** \brief Sorts via merge sort (n log n)
 */
 void DoublyLinkedList::MergeSort()
 {
@@ -289,15 +309,15 @@ void DoublyLinkedList::BubbleSort()
 *
 * Main creates a doubly-linked list and then allows
 * values to be added in and displayed.
-* \todo Implement InsertionSort()
-* \todo Confirm InsertionSort()
+
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
-* \todo Implement timer for sort functions.
 
 */
 int main()
 {
+    clock_t start, stop;
+
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
@@ -309,22 +329,26 @@ int main()
 
             mylist.RandomizeData(20);
 
+
             mylist.Display();
             //mylist.RDisplay();
+
+            start = clock();
 
             switch(i)
             {
                 case 0: mylist.BubbleSort();    break;
                 case 1: mylist.MergeSort();     break;
                 case 2: mylist.InsertionSort(); break;
-                default: cout<<"No such case exists.\n";
+                default: cout<<"No such case exists.\n"; ///< \todo Implement an assert here - this condition will never hit.
             };
 
+            stop = clock();
+
             mylist.Display();
+
+            cout<<"Sort ran for "<< (stop-start)/CLK_TCK <<" seconds.\n";
         }
-
-
-
     }
     catch(...)
     {
