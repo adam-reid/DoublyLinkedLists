@@ -87,9 +87,9 @@ private:
     int m_size;     /**< This is the size of the linked list. */
     mt19937 m_rng;    /**< This is the mersenne twister object for randomness.*/
 
-    void MergeSort_Split(Smart_Ptr,Smart_Ptr,Smart_Ptr);
-    void MergeSort_Merge(Smart_Ptr,Smart_Ptr);
-    void MergeSort(Smart_Ptr);
+    Smart_Ptr MergeSort_Merge(Smart_Ptr,Smart_Ptr);
+    Smart_Ptr GetMiddle(Smart_Ptr);
+    Smart_Ptr MergeSort(Smart_Ptr);
 };
 
 /** \brief Constructor for DoublyLinkedList
@@ -274,11 +274,86 @@ void DoublyLinkedList::InsertionSort()
     }
 }
 
+/** \brief Merge the lists while sorting them.
+*
+* \param front Front list to be merged.
+* \param back Back list to be merged.
+* \return Fully merged list.
+*/
+Smart_Ptr DoublyLinkedList::MergeSort_Merge(Smart_Ptr front, Smart_Ptr back)
+{
+
+    Smart_Ptr result;
+    Smart_Ptr head;
+    result = head = make_shared<Node>(Node());
+
+    while(front!=nullptr && back!=nullptr)
+    {
+        if(front->val < back->val)
+        {
+            result->next = front;
+            front = front->next;
+        }
+        else
+        {
+            result->next = back;
+            back = back->next;
+        }
+
+        result = result->next;
+    }
+
+    result->next = (front==nullptr) ? back : front;
+
+    return head->next;
+}
+
+/** \brief Get the middle node of the list
+* \param head Head of the linked list
+* \return Returns a smart pointer pointing at the middle node.
+*/
+Smart_Ptr DoublyLinkedList::GetMiddle(Smart_Ptr head)
+{
+    Smart_Ptr slow = head;
+    Smart_Ptr fast = head;
+
+    if(slow==nullptr)
+        return slow;
+
+    while(fast->next!=nullptr && fast->next->next != nullptr)
+    {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+    return slow;
+}
+
+/** \brief Private instantiation of merge sort.
+* This function is used recursively, so it needs
+* parameters passed it for the list.
+* \param ptr A linked list ready for sorting.
+* \param sz The size of the full list.
+* \return the final merged, sorted list.
+*/
+Smart_Ptr DoublyLinkedList::MergeSort(Smart_Ptr ptr)
+{
+    Smart_Ptr middle, half;
+
+    if(ptr == nullptr || ptr->next == nullptr)
+        return ptr;
+
+    middle = GetMiddle(ptr);
+    half = middle->next;
+    middle->next = nullptr;
+
+    return MergeSort_Merge(MergeSort(ptr),MergeSort(half));
+}
+
 /** \brief Sorts via merge sort (n log n)
 */
 void DoublyLinkedList::MergeSort()
 {
-
+    m_head = MergeSort(m_head);
 }
 
 /** \brief Sorts via bubble sort (n^2)
@@ -305,10 +380,7 @@ void DoublyLinkedList::BubbleSort()
 *
 * Main creates a doubly-linked list and then allows
 * values to be added in and displayed.
-
-* \todo Implement MergeSort()
-* \todo Confirm MergeSort()
-
+* \return 0 on exit
 */
 int main()
 {
@@ -323,18 +395,18 @@ int main()
             while(mylist.GetSize() > 0)
                 mylist.Pop();
 
-            mylist.RandomizeData(20);
+            mylist.RandomizeData(1000);
 
             mylist.Display();
-            mylist.RDisplay();
+            //mylist.RDisplay();
 
             start = clock();
 
             switch(i)
             {
                 case 0: mylist.BubbleSort();    break;
-                case 1: mylist.MergeSort();     break;
-                case 2: mylist.InsertionSort(); break;
+                case 2: mylist.MergeSort();     break;
+                case 1: mylist.InsertionSort(); break;
                 default: cout<<"No such case exists.\n"; ///< \todo Implement an assert here - this condition will never hit.
             };
 
