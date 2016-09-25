@@ -3,6 +3,8 @@
 *
 * This is an implementation of a doubly-linked list that
 * also allows for 3 different types of sorting algorithms.
+* It is not circular, meaning that at the end of the list,
+* the node is capped with a null pointer.
 * \<3 \<3
 */
 
@@ -41,7 +43,7 @@ struct Node{
     * Receives value as an argument - initializes prev and next to nullptr.
     * \param value Value to be assigned.
     */
-    Node(const int &value):val(value),prev(this),next(this){};
+    Node(const int &value):val(value),prev(nullptr),next(nullptr){};
 };
 
 
@@ -62,6 +64,10 @@ public:
     void Add(const int&, const int&);
     void Push(const int&);
 
+    //Helpers
+    Smart_Ptr CloneList();
+    Smart_Ptr CloneListFromXtoY(const int&, const int&);
+
     //Removers
     void Remove(const int&);
     void Pop();
@@ -80,6 +86,10 @@ private:
     Smart_Ptr m_head; /**< This is the head of the linked list. */
     int m_size;     /**< This is the size of the linked list. */
     mt19937 m_rng;    /**< This is the mersenne twister object for randomness.*/
+
+    void MergeSort_Split(Smart_Ptr,Smart_Ptr,Smart_Ptr);
+    void MergeSort_Merge(Smart_Ptr,Smart_Ptr);
+    void MergeSort(Smart_Ptr);
 };
 
 /** \brief Constructor for DoublyLinkedList
@@ -114,13 +124,11 @@ void DoublyLinkedList::RandomizeData(const int &size)
 void DoublyLinkedList::Add(const int &val, const int &loc)
 {
     Smart_Ptr node = make_shared<Node>(Node(val));
-    Smart_Ptr it;
+    Smart_Ptr it = m_head;
 
-    if(m_size == 0)
+    if(m_head == nullptr)
     {
         m_head = node;
-        m_head->next = m_head;
-        m_head->prev = m_head;
     }
 
     else if (loc > m_size)
@@ -129,15 +137,13 @@ void DoublyLinkedList::Add(const int &val, const int &loc)
     }
     else
     {
-        it = m_head;
-
         for(int i = 0; i < loc-1; i++)
+        {
             it = it->next;
+        }
 
-        node->next = it->next;
-        node->prev = it;
         it->next = node;
-        m_head->prev = node;
+        it->next->prev = it;
     }
 
     cout<<"Adding "<<node->val<<" at "<<node<<"\n";
@@ -163,29 +169,21 @@ void DoublyLinkedList::Remove(const int &loc)
 {
     Smart_Ptr it = m_head;
 
-    if(m_size == 0 || loc >= m_size)
+    if(m_head == nullptr || loc >= m_size)
     {
         cerr<<"Location requested: " << loc << ", max size: " << m_size << "\n";
         cerr<<"No action performed.\n";
     }
 
-    //If in the first half...
-    if(loc < m_size/2)
-    {
-        for(int i = 0; i < loc; i++)
-            it = it->next;
-    }
-    //Else, the second half..
-    else
-    {
-        for(int i = m_size; i > loc; i--)
-            it = it->prev;
-    }
+    for(int i = 0; i < loc; i++)
+        it=it->next;
 
     cout<<"Removing "<<it->val<<" at "<<it<<"\n";
 
-    (it->prev)->next = it->next;
-    (it->next)->prev = it->prev;
+    if(it->prev!=nullptr)
+        (it->prev)->next = it->next;
+    if(it->next!=nullptr)
+        (it->next)->prev = it->prev;
 
     m_size--;
 }
@@ -206,18 +204,19 @@ void DoublyLinkedList::Pop()
 */
 void DoublyLinkedList::Display() const
 {
-    Smart_Ptr node = m_head;
-
+    int idx = 0;
     cout<<"**Printing Forwards Data**\n";
 
-    for(int pos = 0; pos < m_size; pos++, node = node->next)
+    for(Smart_Ptr node = m_head; node != nullptr; node = node->next)
     {
-        cout<<"Index: "<<pos
+        cout<<"Index: "<<idx
             <<"\tValue: "<<node->val
             <<"\tPrevious: "<<node->prev
             <<"\tCurrent: "<<node
             <<"\tNext: "<<node->next
             <<"\n";
+
+        idx++;
     }
 }
 
@@ -228,19 +227,23 @@ void DoublyLinkedList::Display() const
 */
 void DoublyLinkedList::RDisplay() const
 {
+    int idx = 0;
     Smart_Ptr node = m_head;
+
+    for(; node->next != nullptr; node=node->next, idx++){}
 
     cout<<"**Printing Reverse Data**\n";
 
-    for(int pos = m_size-1; pos >= 0; pos--, node = node->prev)
+    for(; node != nullptr; node = node->prev, idx--)
     {
-        cout<<"Index: "<<pos
+        cout<<"Index: "<<idx
             <<"\tValue: "<<node->val
             <<"\tPrevious: "<<node->prev
             <<"\tCurrent: "<<node
             <<"\tNext: "<<node->next
             <<"\n";
     }
+    idx--;
 }
 
 /** \brief Getter method of the doubly-linked list
@@ -257,7 +260,7 @@ void DoublyLinkedList::InsertionSort()
 {
     Smart_Ptr it1, it2, itswap;
 
-    for(it1 = m_head->next; it1 != m_head; it1=it1->next)
+    for(it1 = m_head->next; it1 != nullptr; it1=it1->next)
     {
         it2 = it1;
         itswap = it2->prev;
@@ -271,7 +274,7 @@ void DoublyLinkedList::InsertionSort()
     }
 }
 
-/** \brief Sorts via merge sort (some other notation)
+/** \brief Sorts via merge sort (n log n)
 */
 void DoublyLinkedList::MergeSort()
 {
@@ -284,11 +287,11 @@ void DoublyLinkedList::BubbleSort()
 {
     Smart_Ptr it1, it2, itswap;
 
-    for(it1 = m_head; it1->next != m_head; it1=it1->next)
+    for(it1 = m_head; it1 != nullptr; it1=it1->next)
     {
         itswap = it1;
 
-        for(it2 = it1->next; it2 != m_head; it2=it2->next)
+        for(it2 = it1->next; it2 != nullptr; it2=it2->next)
         {
             if(itswap->val > it2->val)
                 itswap = it2;
@@ -305,39 +308,42 @@ void DoublyLinkedList::BubbleSort()
 
 * \todo Implement MergeSort()
 * \todo Confirm MergeSort()
-* \todo Implement timer for sort functions.
 
 */
 int main()
 {
+    clock_t start, stop;
+
     DoublyLinkedList mylist; /**< This is the main object that does the heavy lifting. */
 
     try{
 /** \test This for loop allows the 3 sorting algorithms to function */
-        for(int i = 2; i < 3; i++)
+        for(int i = 0; i < 3; i++)
         {
             while(mylist.GetSize() > 0)
                 mylist.Pop();
 
             mylist.RandomizeData(20);
 
-
             mylist.Display();
-            //mylist.RDisplay();
+            mylist.RDisplay();
+
+            start = clock();
 
             switch(i)
             {
                 case 0: mylist.BubbleSort();    break;
                 case 1: mylist.MergeSort();     break;
                 case 2: mylist.InsertionSort(); break;
-                default: cout<<"No such case exists.\n";
+                default: cout<<"No such case exists.\n"; ///< \todo Implement an assert here - this condition will never hit.
             };
 
+            stop = clock();
+
             mylist.Display();
+
+            cout<<"Sort ran for "<< (stop-start)/CLK_TCK <<" seconds.\n";
         }
-
-
-
     }
     catch(...)
     {
